@@ -20,22 +20,22 @@
         </elementProp>
       </ThreadGroup>
       <hashTree>
-        <JavaSampler guiclass="JavaTestSamplerGui" testclass="JavaSampler" testname="Java Request Producer Sampler" enabled="true">
+        <JavaSampler guiclass="JavaTestSamplerGui" testclass="JavaSampler" testname="Java Request Producer Sampler">
           <elementProp name="arguments" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments">
             <collectionProp name="Arguments.arguments">
               <elementProp name="kafka_brokers" elementType="Argument">
                 <stringProp name="Argument.name">kafka_brokers</stringProp>
-                <stringProp name="Argument.value">localhost:9092</stringProp>
+                <stringProp name="Argument.value">${kafka_brokers}</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
               </elementProp>
               <elementProp name="kafka_topic" elementType="Argument">
                 <stringProp name="Argument.name">kafka_topic</stringProp>
-                <stringProp name="Argument.value">input-topic</stringProp>
+                <stringProp name="Argument.value">${kafka_topic}</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
               </elementProp>
               <elementProp name="kafka_topic_partitions" elementType="Argument">
                 <stringProp name="Argument.name">kafka_topic_partitions</stringProp>
-                <stringProp name="Argument.value">1</stringProp>
+                <stringProp name="Argument.value">${kafka_topic_partitions}</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
               </elementProp>
               <elementProp name="kafka_key" elementType="Argument">
@@ -50,12 +50,12 @@
               </elementProp>
               <elementProp name="kafka_message_serializer" elementType="Argument">
                 <stringProp name="Argument.name">kafka_message_serializer</stringProp>
-                <stringProp name="Argument.value">org.apache.kafka.common.serialization.StringSerializer</stringProp>
+                <stringProp name="Argument.value">${kafka_message_serializer}</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
               </elementProp>
               <elementProp name="kafka_key_serializer" elementType="Argument">
                 <stringProp name="Argument.name">kafka_key_serializer</stringProp>
-                <stringProp name="Argument.value">org.apache.kafka.common.serialization.ByteStringSerializer</stringProp>
+                <stringProp name="Argument.value">${kafka_message_serializer}</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
               </elementProp>
             </collectionProp>
@@ -63,7 +63,7 @@
           <stringProp name="classname">co.signal.kafkameter.KafkaProducerSampler</stringProp>
         </JavaSampler>
         <hashTree/>
-        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
@@ -102,10 +102,45 @@
         <hashTree/>
         <co.signal.loadgen.LoadGenerator guiclass="TestBeanGUI" testclass="co.signal.loadgen.LoadGenerator" testname="Load Generator Config">
           <stringProp name="className">com.learn.jmeter.kafka.loadgenerator.StringLoadGenerator</stringProp>
-          <stringProp name="fileName">C:/Softwares/jmeter/test-data/test.txt</stringProp>
+          <stringProp name="fileName">${file_name}</stringProp>
           <stringProp name="keyVariableName">key</stringProp>
           <stringProp name="valueVariableName">message</stringProp>
         </co.signal.loadgen.LoadGenerator>
+        <hashTree/>
+        <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+          <collectionProp name="Arguments.arguments">
+            <elementProp name="kafka_brokers" elementType="Argument">
+              <stringProp name="Argument.name">kafka_brokers</stringProp>
+              <stringProp name="Argument.value">localhost:9092</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="kafka_topic" elementType="Argument">
+              <stringProp name="Argument.name">kafka_topic</stringProp>
+              <stringProp name="Argument.value">input-topic</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="kafka_topic_partitions" elementType="Argument">
+              <stringProp name="Argument.name">kafka_topic_partitions</stringProp>
+              <stringProp name="Argument.value">1</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="kafka_key_serializer" elementType="Argument">
+              <stringProp name="Argument.name">kafka_key_serializer</stringProp>
+              <stringProp name="Argument.value">org.apache.kafka.common.serialization.StringSerializer</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="kafka_message_serializer" elementType="Argument">
+              <stringProp name="Argument.name">kafka_message_serializer</stringProp>
+              <stringProp name="Argument.value">org.apache.kafka.common.serialization.StringSerializer</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="file_name" elementType="Argument">
+              <stringProp name="Argument.name">file_name</stringProp>
+              <stringProp name="Argument.value">C:/Softwares/jmeter/test-data/test.txt</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+          </collectionProp>
+        </Arguments>
         <hashTree/>
       </hashTree>
     </hashTree>
