@@ -1,5 +1,6 @@
 package com.learn.jmeter.kafka.loadgenerator;
 
+import co.signal.loadgen.LoadGenerator;
 import co.signal.loadgen.SyntheticLoadGenerator;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -8,14 +9,15 @@ import org.apache.commons.lang3.tuple.Pair;
 import java.util.Map;
 
 public class JsonLoadGenerator implements SyntheticLoadGenerator {
+    private static final ObjectMapper objectMapper = new ObjectMapper();
 
     private String key;
     private String value;
 
     public JsonLoadGenerator(String jsonValue){
-        ObjectMapper objectMapper = new ObjectMapper();
+        System.out.println("Value from File: "+jsonValue);
         try {
-            Map<String,Object> data =objectMapper.readValue(jsonValue, Map.class);
+            var data = (Map<String,Object>) objectMapper.readValue(jsonValue, Map.class);
             this.key = data.get("id").toString();
             this.value = jsonValue;
         } catch (JsonProcessingException e) {
@@ -25,6 +27,6 @@ public class JsonLoadGenerator implements SyntheticLoadGenerator {
     }
     @Override
     public Pair<String, String> nextMessage() {
-        return null;
+        return Pair.of(this.key,this.value);
     }
 }
