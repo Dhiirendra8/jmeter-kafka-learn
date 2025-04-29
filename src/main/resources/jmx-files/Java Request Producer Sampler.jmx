@@ -5,6 +5,8 @@
       <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
         <collectionProp name="Arguments.arguments"/>
       </elementProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
     </TestPlan>
     <hashTree>
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group - Producer">
@@ -18,7 +20,7 @@
         </elementProp>
       </ThreadGroup>
       <hashTree>
-        <JavaSampler guiclass="JavaTestSamplerGui" testclass="JavaSampler" testname="Java Request Producer Sampler">
+        <JavaSampler guiclass="JavaTestSamplerGui" testclass="JavaSampler" testname="Java Request Producer Sampler" enabled="true">
           <elementProp name="arguments" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments">
             <collectionProp name="Arguments.arguments">
               <elementProp name="kafka_brokers" elementType="Argument">
@@ -38,12 +40,12 @@
               </elementProp>
               <elementProp name="kafka_key" elementType="Argument">
                 <stringProp name="Argument.name">kafka_key</stringProp>
-                <stringProp name="Argument.value">${kafka-key}</stringProp>
+                <stringProp name="Argument.value">${key}</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
               </elementProp>
               <elementProp name="kafka_message" elementType="Argument">
                 <stringProp name="Argument.name">kafka_message</stringProp>
-                <stringProp name="Argument.value">${kafka-message}</stringProp>
+                <stringProp name="Argument.value">${message}</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
               </elementProp>
               <elementProp name="kafka_message_serializer" elementType="Argument">
@@ -61,7 +63,7 @@
           <stringProp name="classname">co.signal.kafkameter.KafkaProducerSampler</stringProp>
         </JavaSampler>
         <hashTree/>
-        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree">
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
@@ -97,6 +99,13 @@
           </objProp>
           <stringProp name="filename"></stringProp>
         </ResultCollector>
+        <hashTree/>
+        <co.signal.loadgen.LoadGenerator guiclass="TestBeanGUI" testclass="co.signal.loadgen.LoadGenerator" testname="Load Generator Config">
+          <stringProp name="className">com.learn.jmeter.kafka.loadgenerator.StringLoadGenerator</stringProp>
+          <stringProp name="fileName">C:/Softwares/jmeter/test-data/test.txt</stringProp>
+          <stringProp name="keyVariableName">key</stringProp>
+          <stringProp name="valueVariableName">message</stringProp>
+        </co.signal.loadgen.LoadGenerator>
         <hashTree/>
       </hashTree>
     </hashTree>

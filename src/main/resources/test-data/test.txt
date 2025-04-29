@@ -1,1 +1,1 @@
-{"id": "OpenNew", "label": "Open New"}
+{"key": "OpenNew", "value": {"id": "12345","value": "Abcd09876"}}

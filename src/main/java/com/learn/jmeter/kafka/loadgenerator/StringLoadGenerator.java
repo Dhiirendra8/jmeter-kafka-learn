@@ -12,10 +12,10 @@ public class StringLoadGenerator implements SyntheticLoadGenerator {
     public StringLoadGenerator(String value){
         System.out.println("Value from File: "+value);
         this.value = value;
-//        this.key = UUID.randomUUID().toString();
+        this.key = UUID.randomUUID().toString();
     }
     @Override
     public Pair<String, String> nextMessage() {
-        return Pair.of("key", this.value);
+        return Pair.of(this.key, this.value);
     }
 }
